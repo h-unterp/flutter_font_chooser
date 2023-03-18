@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_font_chooser/font_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-final fontProvider =
-    StateProvider<TextTheme>((ref) => GoogleFonts.robotoTextTheme());
 
 class FontSel extends ConsumerStatefulWidget {
   const FontSel({Key? key}) : super(key: key);
