@@ -10,40 +10,27 @@ part 'font_provider.freezed.dart';
 final fontProvider =
     StateProvider<TextTheme>((ref) => GoogleFonts.robotoTextTheme());
 
+class FontList {
+  FontList(
+    String id,
+    String description,
+    bool completed,
+  );
+}
+
 @freezed
-class Todo with _$Todo {
-  factory Todo({
-    required String id,
-    required String description,
-    required bool completed,
-  }) = _Todo;
+class FontState with _$FontState {
+  factory FontState({
+    required TextTheme currentFont,
+  }) = _FontState;
 }
 
 @riverpod
-class Todos extends _$Todos {
+class FontStateProvider extends _$FontStateProvider {
   @override
-  List<Todo> build() {
-    return [];
-  }
-
-  void addTodo(Todo todo) {
-    state = [...state, todo];
-  }
-
-  void removeTodo(String todoId) {
-    state = [
-      for (final todo in state)
-        if (todo.id != todoId) todo,
-    ];
-  }
-
-  void toggle(String todoId) {
-    state = [
-      for (final todo in state)
-        if (todo.id == todoId)
-          todo.copyWith(completed: !todo.completed)
-        else
-          todo,
-    ];
+  FontState build() {
+    return FontState(
+      currentFont: GoogleFonts.robotoTextTheme(),
+    );
   }
 }

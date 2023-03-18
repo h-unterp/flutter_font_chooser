@@ -15,27 +15,26 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Todo {
-  String get id => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  bool get completed => throw _privateConstructorUsedError;
+mixin _$FontState {
+  TextTheme get currentFont => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
+  $FontStateCopyWith<FontState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TodoCopyWith<$Res> {
-  factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
-      _$TodoCopyWithImpl<$Res, Todo>;
+abstract class $FontStateCopyWith<$Res> {
+  factory $FontStateCopyWith(FontState value, $Res Function(FontState) then) =
+      _$FontStateCopyWithImpl<$Res, FontState>;
   @useResult
-  $Res call({String id, String description, bool completed});
+  $Res call({TextTheme currentFont});
 }
 
 /// @nodoc
-class _$TodoCopyWithImpl<$Res, $Val extends Todo>
-    implements $TodoCopyWith<$Res> {
-  _$TodoCopyWithImpl(this._value, this._then);
+class _$FontStateCopyWithImpl<$Res, $Val extends FontState>
+    implements $FontStateCopyWith<$Res> {
+  _$FontStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -45,119 +44,88 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? description = null,
-    Object? completed = null,
+    Object? currentFont = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      completed: null == completed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
-              as bool,
+      currentFont: null == currentFont
+          ? _value.currentFont
+          : currentFont // ignore: cast_nullable_to_non_nullable
+              as TextTheme,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
-  factory _$$_TodoCopyWith(_$_Todo value, $Res Function(_$_Todo) then) =
-      __$$_TodoCopyWithImpl<$Res>;
+abstract class _$$_FontStateCopyWith<$Res> implements $FontStateCopyWith<$Res> {
+  factory _$$_FontStateCopyWith(
+          _$_FontState value, $Res Function(_$_FontState) then) =
+      __$$_FontStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String description, bool completed});
+  $Res call({TextTheme currentFont});
 }
 
 /// @nodoc
-class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
-    implements _$$_TodoCopyWith<$Res> {
-  __$$_TodoCopyWithImpl(_$_Todo _value, $Res Function(_$_Todo) _then)
+class __$$_FontStateCopyWithImpl<$Res>
+    extends _$FontStateCopyWithImpl<$Res, _$_FontState>
+    implements _$$_FontStateCopyWith<$Res> {
+  __$$_FontStateCopyWithImpl(
+      _$_FontState _value, $Res Function(_$_FontState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? description = null,
-    Object? completed = null,
+    Object? currentFont = null,
   }) {
-    return _then(_$_Todo(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      completed: null == completed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_$_FontState(
+      currentFont: null == currentFont
+          ? _value.currentFont
+          : currentFont // ignore: cast_nullable_to_non_nullable
+              as TextTheme,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Todo implements _Todo {
-  _$_Todo(
-      {required this.id, required this.description, required this.completed});
+class _$_FontState implements _FontState {
+  _$_FontState({required this.currentFont});
 
   @override
-  final String id;
-  @override
-  final String description;
-  @override
-  final bool completed;
+  final TextTheme currentFont;
 
   @override
   String toString() {
-    return 'Todo(id: $id, description: $description, completed: $completed)';
+    return 'FontState(currentFont: $currentFont)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Todo &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.completed, completed) ||
-                other.completed == completed));
+            other is _$_FontState &&
+            (identical(other.currentFont, currentFont) ||
+                other.currentFont == currentFont));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, description, completed);
+  int get hashCode => Object.hash(runtimeType, currentFont);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TodoCopyWith<_$_Todo> get copyWith =>
-      __$$_TodoCopyWithImpl<_$_Todo>(this, _$identity);
+  _$$_FontStateCopyWith<_$_FontState> get copyWith =>
+      __$$_FontStateCopyWithImpl<_$_FontState>(this, _$identity);
 }
 
-abstract class _Todo implements Todo {
-  factory _Todo(
-      {required final String id,
-      required final String description,
-      required final bool completed}) = _$_Todo;
+abstract class _FontState implements FontState {
+  factory _FontState({required final TextTheme currentFont}) = _$_FontState;
 
   @override
-  String get id;
-  @override
-  String get description;
-  @override
-  bool get completed;
+  TextTheme get currentFont;
   @override
   @JsonKey(ignore: true)
-  _$$_TodoCopyWith<_$_Todo> get copyWith => throw _privateConstructorUsedError;
+  _$$_FontStateCopyWith<_$_FontState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
