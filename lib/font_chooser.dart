@@ -50,7 +50,7 @@ class FontSelState extends ConsumerState<FontSel> {
             Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15),
                 child: Text(
-                  "${ref.watch(currentFontStateProvider.notifier).getCurrentFontName()} ${ref.watch(currentFontStateProvider.notifier).isCurrentFontLiked()}",
+                  "${ref.watch(currentFontStateProvider).getCurrentFontName()} ${ref.watch(currentFontStateProvider).isCurrentFontLiked()}",
                 )),
             IconButton(
               onPressed: () {

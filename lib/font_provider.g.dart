@@ -6,6 +6,21 @@ part of 'font_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$currentFontStateHash() => r'68f70d6e22616c03a40ae80f8fda8261231b90d4';
+
+/// See also [currentFontState].
+@ProviderFor(currentFontState)
+final currentFontStateProvider = AutoDisposeProvider<CurrentFontState>.internal(
+  currentFontState,
+  name: r'currentFontStateProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentFontStateHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CurrentFontStateRef = AutoDisposeProviderRef<CurrentFontState>;
 String _$fontStateHash() => r'5dac5ada904ea3a2fe399230560431dff9595d7f';
 
 /// See also [FontState].
@@ -21,20 +36,4 @@ final fontStateProvider =
 );
 
 typedef _$FontState = AutoDisposeNotifier<FontStateState>;
-String _$currentFontStateHash() => r'efe05ddd63a87e23b502ac50d3b94047713b8952';
-
-/// See also [CurrentFontState].
-@ProviderFor(CurrentFontState)
-final currentFontStateProvider =
-    AutoDisposeNotifierProvider<CurrentFontState, FontList>.internal(
-  CurrentFontState.new,
-  name: r'currentFontStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$currentFontStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$CurrentFontState = AutoDisposeNotifier<FontList>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -12,6 +12,11 @@ final currentFontProvider = Provider.autoDispose<TextTheme>((ref) {
   return GoogleFonts.getTextTheme(currentList.fonts[currentList.currentFont]);
 });
 
+final currentFontListProvider = Provider.autoDispose<FontList>((ref) {
+  FontStateState state = ref.watch(fontStateProvider);
+  return state.fontLists[state.currentFontList];
+});
+
 @freezed
 class FontList with _$FontList {
   factory FontList(
@@ -58,12 +63,12 @@ class FontState extends _$FontState {
 }
 
 @riverpod
-class CurrentFontState extends _$CurrentFontState {
-  @override
-  FontList build() {
-    FontStateState state = ref.watch(fontStateProvider);
-    return state.fontLists[state.currentFontList];
-  }
+CurrentFontState currentFontState(CurrentFontStateRef ref) =>
+    CurrentFontState(ref.watch(currentFontListProvider));
+
+class CurrentFontState {
+  CurrentFontState(this.state);
+  FontList state;
 
   TextTheme getCurrentFont() {
     return GoogleFonts.getTextTheme(state.fonts[state.currentFont]);
