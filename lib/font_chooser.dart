@@ -50,13 +50,19 @@ class FontSelState extends ConsumerState<FontSel> {
             Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15),
                 child: Text(
-                  "${ref.watch(currentFontStateProvider).getCurrentFontName()} ${ref.watch(currentFontStateProvider).isCurrentFontLiked()}",
+                  ref.watch(currentFontStateProvider).getCurrentFontName(),
                 )),
             IconButton(
               onPressed: () {
-                ref.read(fontStateProvider.notifier).likeCurrentFont(pos);
+                ref.watch(currentFontStateProvider).isCurrentFontLiked()
+                    ? ref
+                        .read(fontStateProvider.notifier)
+                        .unLikeCurrentFont(pos)
+                    : ref.read(fontStateProvider.notifier).likeCurrentFont(pos);
               },
-              icon: const Icon(CupertinoIcons.plus_circle_fill),
+              icon: ref.watch(currentFontStateProvider).isCurrentFontLiked()
+                  ? const Icon(CupertinoIcons.minus_circle_fill)
+                  : const Icon(CupertinoIcons.plus_circle_fill),
               iconSize: 30,
             )
           ],
@@ -65,7 +71,7 @@ class FontSelState extends ConsumerState<FontSel> {
           thickness: 1,
           color: Colors.white,
         ),
-        Text("", style: const TextStyle(fontSize: 20)),
+        const Text("", style: TextStyle(fontSize: 20)),
       ],
     );
   }

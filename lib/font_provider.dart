@@ -60,6 +60,18 @@ class FontState extends _$FontState {
       fontLists: newList,
     );
   }
+
+  unLikeCurrentFont(int index) {
+    FontList currentList = state.fontLists[state.currentFontList];
+    var newList = List<FontList>.from(state.fontLists);
+    var newLikes = List<int>.from(currentList.likedFonts);
+
+    newList[state.currentFontList] =
+        currentList.copyWith(likedFonts: [...newLikes..removeAt(index)]);
+    state = state.copyWith(
+      fontLists: newList,
+    );
+  }
 }
 
 @riverpod
