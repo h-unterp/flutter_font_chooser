@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:riverpod/src/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'font_provider.g.dart';
 part 'font_provider.freezed.dart';
+part 'font_provider.g.dart';
 
-final currentFontProvider = Provider<TextTheme>((ref) {
-  ref.watch(fontStateProvider as AlwaysAliveProviderListenable);
+final currentFontProvider = Provider.autoDispose<TextTheme>((ref) {
+  FontStateState state = ref.watch(fontStateProvider);
+  FontList currentList = state.fontLists[state.currentFontList];
+  return GoogleFonts.getTextTheme(currentList.fonts[currentList.currentFont]);
 });
 
 @freezed

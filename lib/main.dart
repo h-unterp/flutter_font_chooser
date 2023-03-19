@@ -20,7 +20,7 @@ class MyApp extends ConsumerWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: ref.watch(fontStateProvider.notifier).getCurrentFont(),
+        textTheme: ref.watch(currentFontProvider),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
