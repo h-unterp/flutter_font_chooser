@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_chooser/font_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,35 +23,48 @@ class FontSelState extends ConsumerState<FontSel> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            setState(() {
-              if (pos > 0) {
-                pos--;
-                ref.read(fontProvider.notifier).update(
-                    (state) => GoogleFonts.getTextTheme(fontNames[pos]));
-              }
-            });
-          },
+        Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                setState(() {
+                  if (pos > 0) {
+                    pos--;
+                    ref.read(fontStateProvider.notifier).updateCurrentFont(pos);
+                  }
+                });
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.arrow_forward),
+              onPressed: () {
+                setState(() {
+                  pos++;
+                  ref.read(fontStateProvider.notifier).updateCurrentFont(pos);
+                });
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Text(
+                  ref.watch(fontStateProvider.notifier).getCurrentFontName()),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(CupertinoIcons.plus_circle_fill),
+              iconSize: 30,
+            )
+          ],
         ),
-        IconButton(
-          icon: const Icon(Icons.arrow_forward),
-          onPressed: () {
-            setState(() {
-              pos++;
-              ref
-                  .read(fontProvider.notifier)
-                  .update((state) => GoogleFonts.getTextTheme(fontNames[pos]));
-            });
-          },
+        const Divider(
+          thickness: 1,
+          color: Colors.white,
         ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Text(fontNames[pos]),
-        )
+        Text(ref.watch(fontStateProvider.notifier).getCurrentFont().toString(),
+            style: TextStyle(fontSize: 20)),
       ],
     );
   }

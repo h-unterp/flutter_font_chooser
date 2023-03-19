@@ -20,7 +20,7 @@ class MyApp extends ConsumerWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: ref.watch(fontProvider),
+        textTheme: ref.watch(fontStateProvider.notifier).getCurrentFont(),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: const FontSel(),
+          toolbarHeight: 100,
         ),
         body: Center(
             child: Padding(
