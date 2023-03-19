@@ -37,16 +37,6 @@ class FontState extends _$FontState {
         fontLists: [FontList(fonts: GoogleFonts.asMap().keys.toList())]);
   }
 
-  TextTheme getCurrentFont() {
-    FontList currentList = state.fontLists[state.currentFontList];
-    return GoogleFonts.getTextTheme(currentList.fonts[currentList.currentFont]);
-  }
-
-  String getCurrentFontName() {
-    FontList currentList = state.fontLists[state.currentFontList];
-    return currentList.fonts[currentList.currentFont];
-  }
-
   updateCurrentFont(int index) {
     FontList currentList = state.fontLists[state.currentFontList];
     var newList = List<FontList>.from(state.fontLists);
@@ -54,5 +44,36 @@ class FontState extends _$FontState {
     state = state.copyWith(
       fontLists: newList,
     );
+  }
+
+  likeCurrentFont(int index) {
+    FontList currentList = state.fontLists[state.currentFontList];
+    var newList = List<FontList>.from(state.fontLists);
+    newList[state.currentFontList] =
+        currentList.copyWith(likedFonts: [...currentList.likedFonts, index]);
+    state = state.copyWith(
+      fontLists: newList,
+    );
+  }
+}
+
+@riverpod
+class CurrentFontState extends _$CurrentFontState {
+  @override
+  FontList build() {
+    FontStateState state = ref.watch(fontStateProvider);
+    return state.fontLists[state.currentFontList];
+  }
+
+  TextTheme getCurrentFont() {
+    return GoogleFonts.getTextTheme(state.fonts[state.currentFont]);
+  }
+
+  String getCurrentFontName() {
+    return state.fonts[state.currentFont];
+  }
+
+  isCurrentFontLiked() {
+    return state.likedFonts.contains(state.currentFont);
   }
 }
