@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: const FontSel(),
-          toolbarHeight: 110,
+          toolbarHeight: 125,
         ),
         body: Center(
             child: Padding(

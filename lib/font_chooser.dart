@@ -78,8 +78,7 @@ class FontSelState extends ConsumerState<FontSel> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(fontListNames.join(" ").toString(),
-                style: const TextStyle(fontSize: 20)),
+            dd(),
             IconButton(
               onPressed: () {
                 showDialog(
@@ -124,6 +123,35 @@ class FontSelState extends ConsumerState<FontSel> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget dd() {
+    List<FontList> fontLists = ref.watch(fontStateProvider).fontLists;
+    List<String> fontListNames =
+        fontLists.map((FontList fontList) => fontList.name).toList();
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8, right: 8),
+        child: DropdownButton<String>(
+          value: fontListNames[0],
+          icon: const Icon(Icons.arrow_downward),
+          elevation: 16,
+          style: const TextStyle(color: Colors.black),
+          underline: Container(
+            height: 2,
+            color: Colors.white,
+          ),
+          onChanged: (String? value) {},
+          items: fontListNames.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }
