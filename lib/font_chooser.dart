@@ -14,6 +14,7 @@ class FontSel extends ConsumerStatefulWidget {
 class FontSelState extends ConsumerState<FontSel> {
   int pos = 0;
   List<String> fontNames = [];
+  final TextEditingController fontListNameController = TextEditingController();
 
   @override
   void initState() {
@@ -23,6 +24,9 @@ class FontSelState extends ConsumerState<FontSel> {
 
   @override
   Widget build(BuildContext context) {
+    List<FontList> fontLists = ref.watch(fontStateProvider).fontLists;
+    List<String> fontListNames =
+        fontLists.map((FontList fontList) => fontList.name).toList();
     return Column(
       children: [
         Row(
@@ -71,7 +75,54 @@ class FontSelState extends ConsumerState<FontSel> {
           thickness: 1,
           color: Colors.white,
         ),
-        const Text("", style: TextStyle(fontSize: 20)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(fontListNames.join(" ").toString(),
+                style: const TextStyle(fontSize: 20)),
+            IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                          title: const Text("Save Current Font List"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                ref
+                                    .read(fontStateProvider.notifier)
+                                    .saveCurrentList(
+                                        fontListNameController.text);
+                                Navigator.pop(context);
+                              },
+                              child: const Text("OK"),
+                            )
+                          ],
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                          content: Builder(
+                            builder: (context) {
+                              // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                              var width = MediaQuery.of(context).size.width;
+
+                              return SizedBox(
+                                  width: width,
+                                  child: TextField(
+                                      controller: fontListNameController,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Name your font list',
+                                      )));
+                            },
+                          ),
+                        ));
+              },
+              icon: const Icon(Icons.save),
+              iconSize: 40,
+            ),
+          ],
+        ),
       ],
     );
   }

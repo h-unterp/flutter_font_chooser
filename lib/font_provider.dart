@@ -42,6 +42,27 @@ class FontState extends _$FontState {
         fontLists: [FontList(fonts: GoogleFonts.asMap().keys.toList())]);
   }
 
+  saveCurrentList(String newListName) {
+    FontList currentList = state.fontLists[state.currentFontList];
+    var newFontLists = List<FontList>.from(state.fontLists);
+    List<String> likedFontList = [];
+    for (int i = 0; i < newFontLists.length; i++) {
+      if (currentList.likedFonts.contains(i)) {
+        likedFontList.add(currentList.fonts[i]);
+      }
+    }
+    FontList newFontList = FontList(
+        name: newListName,
+        fonts: likedFontList,
+        likedFonts: [],
+        currentFont: 0);
+
+    newFontLists.add(newFontList);
+    state = state.copyWith(
+      fontLists: newFontLists,
+    );
+  }
+
   updateCurrentFont(int index) {
     FontList currentList = state.fontLists[state.currentFontList];
     var newList = List<FontList>.from(state.fontLists);
@@ -66,9 +87,7 @@ class FontState extends _$FontState {
     var newList = List<FontList>.from(state.fontLists);
     var newLikes = List<int>.from(currentList.likedFonts);
 
-    //we need to remove where value == index, not remoteAt(index)
-    newLikes.removeWhere((value) => value == index);
-
+    //we need to remove where value == index, not removeAt(index)
     newList[state.currentFontList] = currentList.copyWith(
         likedFonts: [...newLikes..removeWhere((value) => value == index)]);
     state = state.copyWith(
