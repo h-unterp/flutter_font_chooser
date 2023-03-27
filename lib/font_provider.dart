@@ -66,8 +66,11 @@ class FontState extends _$FontState {
     var newList = List<FontList>.from(state.fontLists);
     var newLikes = List<int>.from(currentList.likedFonts);
 
-    newList[state.currentFontList] =
-        currentList.copyWith(likedFonts: [...newLikes..removeAt(index)]);
+    //we need to remove where value == index, not remoteAt(index)
+    newLikes.removeWhere((value) => value == index);
+
+    newList[state.currentFontList] = currentList.copyWith(
+        likedFonts: [...newLikes..removeWhere((value) => value == index)]);
     state = state.copyWith(
       fontLists: newList,
     );
