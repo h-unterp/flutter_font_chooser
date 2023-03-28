@@ -40,7 +40,7 @@ Next, under your `MaterialApp` widget you will need to watch the `currentFontPro
       )
 ```
 
-Finally, you will need to add a `FontFinder` widget to your app. This widget will allow you to search for fonts and select the one you want to use. Here is one example:
+Finally, you will need to add a `FontFinder` widget to your app. Make sure to set `toolbarHeight:125` otherwise the widget will be cut off. This widget will allow you to search for fonts and select the one you want to use. Here is one example:
 
 ```dart
 Scaffold(
