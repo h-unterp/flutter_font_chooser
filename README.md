@@ -1,6 +1,8 @@
 # Flutter Font Finder
 A tool to help you find the font you want to use in your Flutter app. 
 
+<img src="img/readme.gif" width="50%" height="50%"/>
+
 ## Getting started
 See example for a working app.
 
