@@ -1,39 +1,42 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+# Flutter Font Finder
+A tool to help you find the font you want to use in your Flutter app. 
 
 ## Getting started
+See example for a working app.
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+in your `pubspec.yaml` add the following dependencies:
+```yaml
+  flutter_riverpod: ^2.3.2
+  flutter_font_finder: ^0.0.1
 ```
 
-## Additional information
+In order to initialize riverpod for your app you will need to wrap your main widget with a `ProviderScope` widget.
+```dart
+void main() {
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Next, under your `MaterialApp` widget you will need to watch the `currentFontProvider` which is imported via `import 'package:flutter_font_finder/flutter_font_finder.dart';`
+
+```dart
+ MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: ref.watch(currentFontProvider),
+      )
+```
+
+Finally, you will need to add a `FontFinder` widget to your app. This widget will allow you to search for fonts and select the one you want to use. Here is one example:
+
+```dart
+Scaffold(
+        appBar: AppBar(
+          title: const FontSel(),
+          toolbarHeight: 125,
+        ),
+```
