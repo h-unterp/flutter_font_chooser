@@ -1,7 +1,7 @@
 name: flutter_font_finder
 description: A widget to help you find your favorite flutter font.
-version: 0.0.1
-license: CC0-1.0
+version: 0.0.3
+license: "CC0-1.0"
 homepage: https://github.com/h-unterp/flutter_font_finder
 
 
