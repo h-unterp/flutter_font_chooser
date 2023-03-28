@@ -144,6 +144,7 @@ class FontSelState extends ConsumerState<FontSel> {
             color: Colors.white,
           ),
           onChanged: (String? value) {
+            pos = 0;
             ref.read(fontStateProvider.notifier).switchList(value!);
           },
           items: fontListNames.map<DropdownMenuItem<String>>((String value) {

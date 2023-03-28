@@ -21,7 +21,7 @@ final currentFontStateProvider = AutoDisposeProvider<CurrentFontState>.internal(
 );
 
 typedef CurrentFontStateRef = AutoDisposeProviderRef<CurrentFontState>;
-String _$fontStateHash() => r'8776addf163ba533617162afdc5498d161512105';
+String _$fontStateHash() => r'e21ca70828554bc20ebdc3e70f8cec152ab91862';
 
 /// See also [FontState].
 @ProviderFor(FontState)

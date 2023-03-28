@@ -46,7 +46,7 @@ class FontState extends _$FontState {
     FontList currentList = state.fontLists[state.currentFontList];
     var newFontLists = List<FontList>.from(state.fontLists);
     List<String> likedFontList = [];
-    for (int i = 0; i < newFontLists.length; i++) {
+    for (int i = 0; i < currentList.fonts.length; i++) {
       if (currentList.likedFonts.contains(i)) {
         likedFontList.add(currentList.fonts[i]);
       }
