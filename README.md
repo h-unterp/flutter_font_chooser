@@ -5,9 +5,10 @@ A tool to help you find the font you want to use in your Flutter app.
 
 ## Features
 1. Enables iterative process to continually refine your list of favorite fonts until you find the right one.
-2. Like or unlike fonts.
+2. Like or unlike fonts in current list.
 3. Save likes as a list and then refine that list and save it again...and repeat.
-4. Export a font-list as JSON so that your developer/teammates can import the list (import not yet implemented).
+4. Switch between lists, state is saved (as long as app is not closed)
+5. Export a font-list as JSON so that your developer/teammates can import the list (import not yet implemented).
 
 ## Getting started
 See example for a working app.
