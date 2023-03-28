@@ -126,7 +126,7 @@ class __$$_FontListCopyWithImpl<$Res>
 
 class _$_FontList implements _FontList {
   _$_FontList(
-      {this.name = "Fontlist",
+      {this.name = "All fonts (initial list)",
       final List<String> fonts = const [],
       final List<int> likedFonts = const [],
       this.currentFont = 0})

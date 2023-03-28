@@ -135,7 +135,7 @@ class FontSelState extends ConsumerState<FontSel> {
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8),
         child: DropdownButton<String>(
-          value: fontListNames[0],
+          value: ref.read(currentFontStateProvider).getCurrentListName(),
           icon: const Icon(Icons.arrow_downward),
           elevation: 16,
           style: const TextStyle(color: Colors.black),
@@ -143,7 +143,9 @@ class FontSelState extends ConsumerState<FontSel> {
             height: 2,
             color: Colors.white,
           ),
-          onChanged: (String? value) {},
+          onChanged: (String? value) {
+            ref.read(fontStateProvider.notifier).switchList(value!);
+          },
           items: fontListNames.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,

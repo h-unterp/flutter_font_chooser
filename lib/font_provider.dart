@@ -20,7 +20,7 @@ final currentFontListProvider = Provider.autoDispose<FontList>((ref) {
 @freezed
 class FontList with _$FontList {
   factory FontList(
-      {@Default("Fontlist") String name,
+      {@Default("All fonts (initial list)") String name,
       @Default([]) List<String> fonts,
       @Default([]) List<int> likedFonts,
       @Default(0) int currentFont}) = _FontList;
@@ -60,6 +60,21 @@ class FontState extends _$FontState {
     newFontLists.add(newFontList);
     state = state.copyWith(
       fontLists: newFontLists,
+    );
+  }
+
+  int fontListNameToIndex(String name) {
+    for (int i = 0; i < state.fontLists.length; i++) {
+      if (state.fontLists[i].name == name) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  switchList(String listName) {
+    state = state.copyWith(
+      currentFontList: fontListNameToIndex(listName),
     );
   }
 
@@ -106,6 +121,10 @@ class CurrentFontState {
 
   TextTheme getCurrentFont() {
     return GoogleFonts.getTextTheme(state.fonts[state.currentFont]);
+  }
+
+  String getCurrentListName() {
+    return state.name;
   }
 
   String getCurrentFontName() {
