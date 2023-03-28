@@ -24,9 +24,6 @@ class FontSelState extends ConsumerState<FontSel> {
 
   @override
   Widget build(BuildContext context) {
-    List<FontList> fontLists = ref.watch(fontStateProvider).fontLists;
-    List<String> fontListNames =
-        fontLists.map((FontList fontList) => fontList.name).toList();
     return Column(
       children: [
         Row(
@@ -46,8 +43,10 @@ class FontSelState extends ConsumerState<FontSel> {
               icon: const Icon(Icons.arrow_forward),
               onPressed: () {
                 setState(() {
-                  pos++;
-                  ref.read(fontStateProvider.notifier).updateCurrentFont(pos);
+                  if (ref.read(currentFontStateProvider).hasNext()) {
+                    pos++;
+                    ref.read(fontStateProvider.notifier).updateCurrentFont(pos);
+                  }
                 });
               },
             ),

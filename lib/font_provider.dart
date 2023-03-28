@@ -131,6 +131,10 @@ class CurrentFontState {
     return state.fonts[state.currentFont];
   }
 
+  bool hasNext() {
+    return state.currentFont < state.fonts.length - 1;
+  }
+
   isCurrentFontLiked() {
     return state.likedFonts.contains(state.currentFont);
   }
