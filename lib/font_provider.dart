@@ -123,6 +123,10 @@ class CurrentFontState {
     return GoogleFonts.getTextTheme(state.fonts[state.currentFont]);
   }
 
+  List<String> getCurrentFontList() {
+    return state.fonts;
+  }
+
   String getCurrentListName() {
     return state.name;
   }

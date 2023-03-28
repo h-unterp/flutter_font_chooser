@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_chooser/font_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class FontSel extends ConsumerStatefulWidget {
   const FontSel({Key? key}) : super(key: key);
@@ -119,6 +122,13 @@ class FontSelState extends ConsumerState<FontSel> {
               icon: const Icon(Icons.save),
               iconSize: 40,
             ),
+            IconButton(
+                onPressed: () {
+                  List<String> currentFonts =
+                      ref.read(currentFontStateProvider).getCurrentFontList();
+                  Share.share(jsonEncode(currentFonts));
+                },
+                icon: const Icon(Icons.share))
           ],
         ),
       ],
